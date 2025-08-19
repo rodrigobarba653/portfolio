@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import { content } from "@/data/content";
 
 interface NavigationProps {
@@ -15,16 +15,16 @@ export default function Navigation({ language, setLanguage }: NavigationProps) {
     <nav className="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <a href="/" className="text-2xl font-bold text-[#beff48]">
+          <Link href="/" className="text-2xl font-bold text-[#beff48]">
             Rodrigo Barba
-          </a>
+          </Link>
           <div className="hidden md:flex space-x-8">
-            <a
+            <Link
               href="/"
               className="text-slate-300 hover:text-[#beff48] transition-colors"
             >
               Home
-            </a>
+            </Link>
 
             {/* Projects Dropdown */}
             <div className="relative group">
@@ -47,39 +47,39 @@ export default function Navigation({ language, setLanguage }: NavigationProps) {
               {/* Hover bridge to prevent menu from disappearing */}
               <div className="absolute top-0 left-0 w-full h-8 bg-transparent"></div>
               <div className="absolute top-full left-0 mt-2 w-48 bg-black/95 backdrop-blur-md border border-slate-800/50 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <a
+                <Link
                   href="/ui-ux-projects"
                   className="block px-4 py-3 text-slate-300 hover:text-[#beff48] hover:bg-slate-800/50 transition-colors rounded-t-xl"
                 >
                   UI/UX & Development
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/interactive-projects"
                   className="block px-4 py-3 text-slate-300 hover:text-[#beff48] hover:bg-slate-800/50 transition-colors rounded-b-xl"
                 >
                   Interactive Design
-                </a>
+                </Link>
               </div>
             </div>
 
-            <a
+            <Link
               href="/#about"
               className="text-slate-300 hover:text-[#beff48] transition-colors"
             >
               {t.nav.about}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#skills"
               className="text-slate-300 hover:text-[#beff48] transition-colors"
             >
               {t.nav.skills}
-            </a>
-            <a
+            </Link>
+            <Link
               href="/#contact"
               className="text-slate-300 hover:text-[#beff48] transition-colors"
             >
               {t.nav.contact}
-            </a>
+            </Link>
           </div>
           <div className="flex items-center space-x-4">
             {/* Language Toggle */}

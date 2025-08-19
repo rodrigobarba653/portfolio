@@ -1,6 +1,6 @@
 "use client";
 
-import { content } from "@/data/content";
+
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import VideoCard from "@/components/VideoCard";
@@ -12,7 +12,7 @@ export default function InteractiveProjects() {
     null
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const t = content[language as keyof typeof content];
+
 
   const openVideoModal = (videoIndex: number) => {
     setSelectedVideoIndex(videoIndex);

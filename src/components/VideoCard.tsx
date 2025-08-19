@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 interface VideoCardProps {
   video: {
     id: string;
