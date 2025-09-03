@@ -9,6 +9,7 @@ interface Project {
   description: string;
   tags: string[];
   figmaLink?: string;
+  images?: string[]; // Optional array for multiple images (like Peibo App)
 }
 
 interface ProjectCardProps {
@@ -28,26 +29,44 @@ export default function ProjectCard({
       className="group relative overflow-hidden rounded-2xl bg-black/60 border border-slate-800/50 hover:border-[#beff48]/30 transition-all duration-300 cursor-pointer hover:scale-105"
     >
       <div className="aspect-video overflow-hidden">
-        <div className="flex gap-2 p-7">
-          <div className="w-1/2">
-            <Image
-              src={project.mobile}
-              alt={`${project.title} - Mobile Version`}
-              width={200}
-              height={225}
-              className="w-full object-contain rounded-lg  transition-transform duration-300"
-            />
+        {project.images && project.images.length > 0 ? (
+          /* Multiple Images Grid (for Peibo App) */
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-1 p-4">
+            {project.images.slice(0, 8).map((image, index) => (
+              <div key={index} className="text-center">
+                <Image
+                  src={image}
+                  alt={`${project.title} - Image ${index + 1}`}
+                  width={150}
+                  height={200}
+                  className="w-full h-full object-cover rounded-lg transition-transform duration-300"
+                />
+              </div>
+            ))}
           </div>
-          <div className="w-1/2">
-            <Image
-              src={project.desktop}
-              alt={`${project.title} - Desktop Version`}
-              width={400}
-              height={225}
-              className="w-full object-contain rounded-lg  transition-transform duration-300"
-            />
+        ) : (
+          /* Standard Mobile/Desktop Layout */
+          <div className="flex gap-2 p-7">
+            <div className="w-1/2">
+              <Image
+                src={project.mobile}
+                alt={`${project.title} - Mobile Version`}
+                width={200}
+                height={225}
+                className="w-full object-contain rounded-lg  transition-transform duration-300"
+              />
+            </div>
+            <div className="w-1/2">
+              <Image
+                src={project.desktop}
+                alt={`${project.title} - Desktop Version`}
+                width={400}
+                height={225}
+                className="w-full object-contain rounded-lg  transition-transform duration-300"
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>

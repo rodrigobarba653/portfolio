@@ -116,6 +116,45 @@ export default function UIUXProjects() {
               "Generación de Confianza",
             ],
     },
+    {
+      mobile: "/images/uiux/PeiboAppMobile.png",
+      desktop: "/images/uiux/PeiboAppDesktop.png",
+      title:
+        language === "en"
+          ? "Peibo App - Mobile Application"
+          : "Peibo App - Aplicación Móvil",
+      description:
+        language === "en"
+          ? "Complete mobile application design and development for Peibo, featuring intuitive user interface, seamless navigation, and modern design principles. Built with responsive design and user-centered approach."
+          : "Diseño y desarrollo completo de aplicación móvil para Peibo, con interfaz de usuario intuitiva, navegación fluida y principios de diseño moderno. Construida con diseño responsivo y enfoque centrado en el usuario.",
+      tags:
+        language === "en"
+          ? [
+              "Mobile App",
+              "UI/UX Design",
+              "Responsive Design",
+              "User Interface",
+              "Modern Design",
+            ]
+          : [
+              "App Móvil",
+              "Diseño UI/UX",
+              "Diseño Responsivo",
+              "Interfaz de Usuario",
+              "Diseño Moderno",
+            ],
+      images: [
+        "/images/uiux/PeiboApp1.png",
+        "/images/uiux/PeiboApp2.png",
+        "/images/uiux/PeiboApp3.png",
+        "/images/uiux/PeiboApp4.png",
+        "/images/uiux/PeiboApp5.png",
+        "/images/uiux/PeiboApp6.png",
+        "/images/uiux/PeiboApp7.png",
+        "/images/uiux/PeiboApp8.png",
+        "/images/uiux/PeiboApp9.png",
+      ],
+    },
   ];
 
   const wireframeProjects = [

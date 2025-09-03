@@ -9,6 +9,7 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
+  images?: string[]; // Optional array for multiple images (like Peibo App)
 }
 
 interface ProjectModalProps {
@@ -177,44 +178,61 @@ export default function ProjectModal({
             </p>
           </div>
 
-          {/* Single Wrapper with Responsive Layout */}
+          {/* Conditional Layout: Grid for multiple images, standard for single images */}
           <div className="bg-slate-800/60 rounded-xl p-6 border border-slate-600/50">
-            {/* Mobile: Stacked, Desktop: Side by Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Mobile Version */}
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
-                  <span>📱</span>
-                  Mobile
-                </h3>
-                <div className="max-w-sm mx-auto">
-                  <Image
-                    src={currentProject.mobile}
-                    alt={`${currentProject.title} - Mobile`}
-                    width={400}
-                    height={800}
-                    className="w-full h-auto rounded-xl border border-slate-500/50"
-                  />
-                </div>
+            {currentProject.images && currentProject.images.length > 0 ? (
+              /* Multiple Images Grid (for Peibo App) */
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {currentProject.images.map((image, index) => (
+                  <div key={index} className="text-center">
+                    <Image
+                      src={image}
+                      alt={`${currentProject.title} - Image ${index + 1}`}
+                      width={300}
+                      height={400}
+                      className="w-full h-auto rounded-xl border border-slate-500/50"
+                    />
+                  </div>
+                ))}
               </div>
+            ) : (
+              /* Standard Mobile/Desktop Layout */
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Mobile Version */}
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                    <span>📱</span>
+                    Mobile
+                  </h3>
+                  <div className="max-w-sm mx-auto">
+                    <Image
+                      src={currentProject.mobile}
+                      alt={`${currentProject.title} - Mobile`}
+                      width={400}
+                      height={800}
+                      className="w-full h-auto rounded-xl border border-slate-500/50"
+                    />
+                  </div>
+                </div>
 
-              {/* Desktop Version */}
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
-                  <span>💻</span>
-                  Desktop
-                </h3>
-                <div className="max-w-full">
-                  <Image
-                    src={currentProject.desktop}
-                    alt={`${currentProject.title} - Desktop`}
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto rounded-xl border border-slate-500/50"
-                  />
+                {/* Desktop Version */}
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                    <span>💻</span>
+                    Desktop
+                  </h3>
+                  <div className="max-w-full">
+                    <Image
+                      src={currentProject.desktop}
+                      alt={`${currentProject.title} - Desktop`}
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto rounded-xl border border-slate-500/50"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Project Tags */}
