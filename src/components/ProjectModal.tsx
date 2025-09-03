@@ -26,23 +26,6 @@ export default function ProjectModal({
   onClose,
   onNavigate,
 }: ProjectModalProps) {
-  // Handle body scroll when modal is open
-  useEffect(() => {
-    if (isOpen) {
-      // Prevent scrolling when modal is open
-      document.body.style.overflow = "hidden";
-    } else {
-      // Reset body scroll when modal is closed
-      document.body.style.overflow = "auto";
-    }
-
-    // Cleanup function
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [isOpen]);
-
-  // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -64,8 +47,26 @@ export default function ProjectModal({
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    // Prevent background scrolling when modal is open
+    if (isOpen) {
+      // Store original overflow values
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+
+      // Prevent scrolling on both body and html
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+
+      // Add keyboard event listener
+      document.addEventListener("keydown", handleKeyDown);
+
+      // Cleanup function
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+      };
+    }
   }, [isOpen, currentProjectIndex, projects.length, onNavigate, onClose]);
 
   if (!isOpen || !projects[currentProjectIndex]) return null;
@@ -88,11 +89,11 @@ export default function ProjectModal({
 
   return (
     <div
-      className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="relative bg-slate-900/95 border border-slate-700/50 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
+        className="relative bg-slate-900/95 border border-slate-700/50 rounded-2xl max-w-6xl w-full max-h-[90vh] my-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -159,7 +160,7 @@ export default function ProjectModal({
         )}
 
         {/* Modal Content */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-2rem)]">
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-white mb-2">
               {currentProject.title}

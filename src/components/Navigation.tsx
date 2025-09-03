@@ -19,13 +19,6 @@ export default function Navigation({ language, setLanguage }: NavigationProps) {
             Rodrigo Barba
           </Link>
           <div className="hidden md:flex space-x-8">
-            <Link
-              href="/"
-              className="text-slate-300 hover:text-[#beff48] transition-colors"
-            >
-              Home
-            </Link>
-
             {/* Projects Dropdown */}
             <div className="relative group">
               <button className="text-slate-300 hover:text-[#beff48] transition-colors flex items-center space-x-1">

@@ -8,6 +8,7 @@ interface Project {
   title: string;
   description: string;
   tags: string[];
+  figmaLink?: string;
 }
 
 interface ProjectCardProps {
@@ -55,7 +56,7 @@ export default function ProjectCard({
           <span className="text-xs text-slate-400">📱 Mobile</span>
           <span className="text-xs text-slate-400">💻 Desktop</span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, tagIndex) => (
             <span
               key={tagIndex}
@@ -65,6 +66,25 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
+        {project.figmaLink && (
+          <a
+            href={project.figmaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center px-4 py-2 bg-[#beff48] text-black font-semibold rounded-lg hover:bg-[#a3e635] transition-colors duration-200 text-sm"
+          >
+            <svg
+              className="w-4 h-4 mr-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 12c0-3.172 0-4.758.732-5.964.732-1.206 2.05-1.964 4.686-1.964s3.954.758 4.686 1.964C23 7.242 23 8.828 23 12s0 4.758-.732 5.964c-.732 1.206-2.05 1.964-4.686 1.964s-3.954-.758-4.686-1.964C12 16.758 12 15.172 12 12z" />
+              <path d="M12 12c0-3.172 0-4.758-.732-5.964C10.536 4.83 9.218 4.072 6.582 4.072s-3.954.758-4.686 1.964C1 7.242 1 8.828 1 12s0 4.758.732 5.964c.732 1.206 2.05 1.964 4.686 1.964s3.954-.758 4.686-1.964C12 16.758 12 15.172 12 12z" />
+            </svg>
+            View in Figma
+          </a>
+        )}
       </div>
     </div>
   );

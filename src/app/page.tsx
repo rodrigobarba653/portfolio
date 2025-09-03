@@ -7,6 +7,7 @@ import { content } from "@/data/content";
 import Navigation from "@/components/Navigation";
 import ProjectModal from "@/components/ProjectModal";
 import ProjectCard from "@/components/ProjectCard";
+
 import VideoCard from "@/components/VideoCard";
 import VideoModal from "@/components/VideoModal";
 
@@ -15,6 +16,7 @@ export default function Home() {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState<
     number | null
   >(null);
+
   const [selectedVideoIndex, setSelectedVideoIndex] = useState<number | null>(
     null
   );
@@ -48,7 +50,8 @@ export default function Home() {
     setSelectedVideoIndex(newIndex);
   };
 
-  const projects = [
+  // Homepage preview - only 3 projects
+  const homepageProjects = [
     {
       mobile: "/images/uiux/PeiboMobile.png",
       desktop: "/images/uiux/PeiboDesktop.png",
@@ -57,18 +60,70 @@ export default function Home() {
       tags: t.work.project3.tags,
     },
     {
+      mobile: "/images/uiux/JewelersMutualMobile.png",
+      desktop: "/images/uiux/JewelersMutualDesktop.png",
+      title:
+        language === "en"
+          ? "Jewelers Mutual - Insurance Platform"
+          : "Jewelers Mutual - Plataforma de Seguros",
+      description:
+        language === "en"
+          ? "Insurance platform for jewelry businesses with comprehensive coverage options, claims management, and business protection services. Clean, professional design with trust-building elements."
+          : "Plataforma de seguros para negocios de joyería con opciones de cobertura integral, gestión de reclamos y servicios de protección empresarial. Diseño limpio y profesional con elementos que generan confianza.",
+      tags:
+        language === "en"
+          ? [
+              "Insurance",
+              "Business Platform",
+              "Claims Management",
+              "Professional Design",
+              "Trust Building",
+            ]
+          : [
+              "Seguros",
+              "Plataforma Empresarial",
+              "Gestión de Reclamos",
+              "Diseño Profesional",
+              "Generación de Confianza",
+            ],
+    },
+    {
       mobile: "/images/uiux/EatPecanMobile.png",
       desktop: "/images/uiux/EatPecanDesktop.png",
       title: t.work.project5.title,
       description: t.work.project5.description,
       tags: t.work.project5.tags,
     },
+  ];
+
+  const wireframeProjects = [
     {
-      mobile: "/images/uiux/PetPlaceMobile.png",
-      desktop: "/images/uiux/PetPlaceDesktop.png",
-      title: t.work.project2.title,
-      description: t.work.project2.description,
-      tags: t.work.project2.tags,
+      image: "/images/uiux/WireDMI.png",
+      title:
+        language === "en"
+          ? "DMI - Wireframes & Prototypes"
+          : "DMI - Wireframes y Prototipos",
+      description:
+        language === "en"
+          ? "Comprehensive wireframe and interactive prototype design for DMI platform. Features user flow mapping, interface wireframes, and clickable prototypes showcasing the complete user journey and interaction patterns."
+          : "Diseño integral de wireframes y prototipos interactivos para la plataforma DMI. Incluye mapeo de flujos de usuario, wireframes de interfaz y prototipos clicables que muestran el viaje completo del usuario y patrones de interacción.",
+      tags:
+        language === "en"
+          ? [
+              "Wireframes",
+              "Interactive Prototypes",
+              "User Flow",
+              "Figma",
+              "UX Design",
+            ]
+          : [
+              "Wireframes",
+              "Prototipos Interactivos",
+              "Flujo de Usuario",
+              "Figma",
+              "Diseño UX",
+            ],
+      figmaLink: "https://www.figma.com/proto/your-prototype-link", // Replace with actual Figma link
     },
   ];
 
@@ -256,7 +311,7 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {projects.map((project, index) => (
+            {homepageProjects.map((project, index) => (
               <ProjectCard
                 key={index}
                 project={project}
@@ -611,7 +666,7 @@ export default function Home() {
 
       {/* Project Modal */}
       <ProjectModal
-        projects={projects}
+        projects={homepageProjects}
         currentProjectIndex={selectedProjectIndex || 0}
         isOpen={selectedProjectIndex !== null}
         onClose={closeModal}

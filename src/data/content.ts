@@ -144,6 +144,19 @@ export const content = {
           "User Experience",
         ],
       },
+      project7: {
+        title: "Jewelers Mutual - Jewelry Insurance",
+        description:
+          "Jewelry insurance platform with comprehensive coverage options, claims management, and business protection services. Clean, professional design with trust-building elements.",
+        tags: [
+          "Insurance",
+          "Business Platform",
+          "Claims Management",
+          "Professional Design",
+          "Trust Building",
+          "User Experience",
+        ],
+      },
     },
     cta: {
       title: "Ready to Start Your Project? 🚀",
