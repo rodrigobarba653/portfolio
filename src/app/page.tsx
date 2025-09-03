@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { content } from "@/data/content";
 import Navigation from "@/components/Navigation";
@@ -123,9 +124,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="px-8 py-4 bg-[#beff48] text-black font-semibold rounded-xl hover:bg-[#a3e635] transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl glow-primary">
+            <Link
+              href="/ui-ux-projects"
+              className="px-8 py-4 bg-[#beff48] text-black font-semibold rounded-xl hover:bg-[#a3e635] transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl glow-primary"
+            >
               {t.hero.viewWork}
-            </button>
+            </Link>
             <a
               href={
                 language === "en"
